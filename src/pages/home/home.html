@@ -1,14 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Search Contacts
     </ion-title>
   </ion-navbar>
+  <ion-searchbar
+  [(ngModel)]="name"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="getOneContact($event)"
+  (ionCancel)="getAllContacts($event)"
+  (ionClear)="getAllContacts($event)">
+</ion-searchbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  
+  <ion-item *ngFor = "let c of cts;">
+    <ion-label >{{c.displayName}}</ion-label>
+    <ion-label (click)="presentConfirm(c.displayName, c.phoneNumbers[0].value)">Ver</ion-label>
+
+    </ion-item>
+ 
 </ion-content>
